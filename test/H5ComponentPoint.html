@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+
+    <title>H5ComponentPoint</title>
+
+    <script type="text/javascript" src="../js/lib/jquery.js"></script>
+    <script type="text/javascript" src="../js/H5ComponentBase.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/H5ComponentBase.css">
+
+
+    <script type="text/javascript" src="../js/H5ComponentPoint.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/H5ComponentPoint.css">
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-size: 12px;
+        }
+
+        .iphone {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -270px 0 0 -170px;
+            width: 340px;
+            height: 540px;
+            background-color: #fff;
+        }
+    </style>
+<body>
+<!-- 用于开发测试 H5ComponentPoint 对象 -->
+<div class="iphone">
+
+</div>
+
+<script type="text/javascript">
+    var cfg = {
+        type: 'point',
+
+        width: 300,
+        height: 300,
+
+        data:[
+            ['中级',.4,'rgb(255, 118, 118)'], //以第一个的比例为基准，设置其他点的大小
+            ['初级',.2,'rgb(255, 163, 164)',0,'-60%'],
+            ['高级',.3,'rgb(153, 193, 255)','50%','-120%']
+        ],
+
+        css:{
+            bottom:'20%',
+            opacity:0
+        },
+        center:true,
+
+        animateIn:{
+            opacity:1
+        },
+        animateOut:{
+            opacity:0
+        }
+    }
+
+    var h5 = new H5ComponentPoint('myPointComponent',cfg);
+    $('.iphone').append(h5);
+
+    var leave = true;
+
+    $('body').click(function () {
+        leave = !leave;
+        h5.trigger(leave?'onLeave':'onLoad');
+    });
+
+</script>
+
+</body>
+
+</html>
